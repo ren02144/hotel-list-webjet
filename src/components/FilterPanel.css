@@ -1,0 +1,50 @@
+.filter-panel {
+    width: 260px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .filter-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  
+  .filter-section {
+    margin-bottom: 20px;
+  }
+  
+  .filter-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
+  .filter-name-input {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .filter-name-input input {
+    flex: 1;
+    padding: 6px;
+    font-size: 14px;
+  }
+  
+  .filter-name-input button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .filter-rating-options label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  
