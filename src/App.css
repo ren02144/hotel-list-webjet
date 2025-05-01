@@ -90,10 +90,6 @@
     flex-direction: column;
   }
 
-  .filter-panel {
-    width: 100%;
-  }
-
   .hotel-list {
     width: 100%;
   }
@@ -104,5 +100,9 @@
 
   .filter-panel {
     display: none;
+  }
+
+  .filter-modal .filter-panel {
+    display: block;
   }
 }

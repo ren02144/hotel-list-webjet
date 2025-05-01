@@ -33,21 +33,26 @@ const hotels = [
 ];
 
 function App() {
-  const [filters, setFilters] = useState({ name: "", rating: 0 });
+  const [filters, setFilters] = useState({
+    name: "",
+    ratings: []
+  });
   const [showFilterModal, setShowFilterModal] = useState(false);
 
-  const handleNameChange = (name) =>
+  const handleNameSearch = (name) => {
     setFilters((prev) => ({ ...prev, name }));
+  };
 
-  const handleRatingChange = (rating) =>
-    setFilters((prev) => ({ ...prev, rating }));
+  const handleRatingChange = (ratings) => {
+    setFilters((prev) => ({ ...prev, ratings }));
+  };
 
   const filteredHotels = hotels
     .filter((hotel) =>
       hotel.name.toLowerCase().includes(filters.name.toLowerCase())
     )
     .filter((hotel) =>
-      filters.rating > 0 ? hotel.rating === filters.rating : true
+      filters.ratings.length > 0 ? filters.ratings.includes(hotel.rating) : true
     )
     .sort((a, b) => a.price - b.price);
 
@@ -59,7 +64,7 @@ function App() {
         <div className="main-content">
           <FilterPanel
             filters={filters}
-            onNameChange={handleNameChange}
+            onNameSearch={handleNameSearch}
             onRatingChange={handleRatingChange}
           />
           <div className="hotel-list">
@@ -81,7 +86,7 @@ function App() {
               </button>
               <FilterPanel
                 filters={filters}
-                onNameChange={handleNameChange}
+                onNameSearch={handleNameSearch}
                 onRatingChange={handleRatingChange}
               />
             </div>
