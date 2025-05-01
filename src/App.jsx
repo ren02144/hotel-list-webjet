@@ -34,6 +34,7 @@ const hotels = [
 
 function App() {
   const [filters, setFilters] = useState({ name: "", rating: 0 });
+  const [showFilterModal, setShowFilterModal] = useState(false);
 
   const handleNameChange = (name) =>
     setFilters((prev) => ({ ...prev, name }));
@@ -68,6 +69,30 @@ function App() {
           </div>
           <AdBanner />
         </div>
+
+        {showFilterModal && (
+          <div className="filter-modal">
+            <div className="filter-modal-content">
+              <button
+                className="filter-modal-close"
+                onClick={() => setShowFilterModal(false)}
+              >
+                Close
+              </button>
+              <FilterPanel
+                filters={filters}
+                onNameChange={handleNameChange}
+                onRatingChange={handleRatingChange}
+              />
+            </div>
+          </div>
+        )}
+        <button
+          className="filter-float-button"
+          onClick={() => setShowFilterModal(true)}
+        >
+          Filters
+        </button>
       </main>
     </div>
   );

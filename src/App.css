@@ -30,10 +30,54 @@
   gap: 20px;
 }
 
-.ad-banner {
-  display: block;
-  width: 160px;
-  height: 600px;
+/* Floating button */
+.filter-float-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #555;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  z-index: 1000;
+  display: none;
+  min-width: 140px;
+  text-align: center;
+}
+
+/* Modal overlay */
+.filter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+/* Modal content */
+.filter-modal-content {
+  background: #fff;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+/* Close button inside modal */
+.filter-modal-close {
+  float: right;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /* tablet：< 992px */
@@ -52,5 +96,13 @@
 
   .hotel-list {
     width: 100%;
+  }
+
+  .filter-float-button {
+    display: block;
+  }
+
+  .filter-panel {
+    display: none;
   }
 }
