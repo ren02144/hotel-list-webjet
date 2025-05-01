@@ -1,6 +1,5 @@
 .hotel-card {
   display: flex;
-  align-items: center;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -21,25 +20,28 @@
   object-fit: cover;
 }
 
-.hotel-details {
+.hotel-info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   flex: 1;
   padding: 12px 16px;
 }
 
+.hotel-details {
+  display: flex;
+  flex-direction: column;
+}
+
 .hotel-name {
-  margin: 0 0 6px;
+  margin: 0 0 5px;
   font-size: 18px;
   font-weight: bold;
-  color: #222;
 }
 
 .hotel-stars {
   color: #f4a261;
-  margin-bottom: 6px;
-}
-
-.star {
-  margin-right: 2px;
+  margin-bottom: 5px;
 }
 
 .room-type {
@@ -47,14 +49,41 @@
   color: #666;
 }
 
-.label {
-  font-weight: bold;
-}
-
 .hotel-price {
-  padding: 0 20px;
   font-size: 22px;
   font-weight: bold;
   color: #333;
   white-space: nowrap;
+}
+
+/* ------------ 手机模式 ------------ */
+@media (max-width: 768px) {
+  .hotel-card {
+    flex-direction: column;
+  }
+
+  .hotel-image-wrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .hotel-image {
+    height: auto;
+  }
+
+  .hotel-info-wrapper {
+    width: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+  }
+
+  .room-type {
+    display: none;
+  }
+
+  .hotel-price {
+    font-size: 18px;
+  }
 }
