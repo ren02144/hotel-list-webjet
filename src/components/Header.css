@@ -1,0 +1,15 @@
+.header {
+    background-color: #dc140a;
+    padding: 16px 0;
+  }
+  
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  

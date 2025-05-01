@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import "./App.css";
 import HotelCard from "./components/HotelCard";
 import FilterPanel from "./components/FilterPanel";
+import AdBanner from "./components/AdBanner";
+import Header from "./components/Header";
 
-// fake data
 const hotels = [
   {
     id: 1,
@@ -34,13 +35,11 @@ const hotels = [
 function App() {
   const [filters, setFilters] = useState({ name: "", rating: 0 });
 
-  const handleNameChange = (name) => {
+  const handleNameChange = (name) =>
     setFilters((prev) => ({ ...prev, name }));
-  };
 
-  const handleRatingChange = (rating) => {
+  const handleRatingChange = (rating) =>
     setFilters((prev) => ({ ...prev, rating }));
-  };
 
   const filteredHotels = hotels
     .filter((hotel) =>
@@ -49,23 +48,27 @@ function App() {
     .filter((hotel) =>
       filters.rating > 0 ? hotel.rating === filters.rating : true
     )
-    .sort((a, b) => a.price - b.price); // by default sort by price asc
+    .sort((a, b) => a.price - b.price);
 
   return (
-    <div className="app">
-      <h1 className="page-title">550 Hotels Available in Melbourne</h1>
-      <div className="main-content">
-        <FilterPanel
-          filters={filters}
-          onNameChange={handleNameChange}
-          onRatingChange={handleRatingChange}
-        />
-        <div className="hotel-list">
-          {filteredHotels.map((hotel) => (
-            <HotelCard key={hotel.id} hotel={hotel} />
-          ))}
+    <div className="page">
+      <Header />
+      <main className="main-area">
+        <h1 className="page-title">550 Hotels Available in Melbourne</h1>
+        <div className="main-content">
+          <FilterPanel
+            filters={filters}
+            onNameChange={handleNameChange}
+            onRatingChange={handleRatingChange}
+          />
+          <div className="hotel-list">
+            {filteredHotels.map((hotel) => (
+              <HotelCard key={hotel.id} hotel={hotel} />
+            ))}
+          </div>
+          <AdBanner />
         </div>
-      </div>
+      </main>
     </div>
   );
 }

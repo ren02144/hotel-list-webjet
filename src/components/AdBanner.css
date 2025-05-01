@@ -1,0 +1,15 @@
+.ad-banner {
+    width: 220px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+.ad-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+  

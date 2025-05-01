@@ -1,5 +1,32 @@
+.page {
+  background-color: #dc140a;
+  min-height: 100vh;
+}
+
+.main-area {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.page-title {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
 .main-content {
   display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.hotel-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
