@@ -38,7 +38,7 @@ function App() {
     ratings: []
   });
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [modalWasOpen, setModalWasOpen] = useState(false); // State to track if the modal was open during window resize
+  const [modalWasOpen, setModalWasOpen] = useState(false);
 
   const handleNameSearch = (name) => {
     setFilters((prev) => ({ ...prev, name }));
@@ -61,40 +61,40 @@ function App() {
     )
     .sort((a, b) => a.price - b.price);
 
-    useEffect(() => {
-      const handleResize = () => {
-        if (window.innerWidth >= 992) {
-          if (showFilterModal) {
-            setShowFilterModal(false);
-            setModalWasOpen(true); 
-          }
-        } else {
-          if (modalWasOpen) {
-            setShowFilterModal(true); 
-            setModalWasOpen(false);   
-          }
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 992) {
+        if (showFilterModal) {
+          setShowFilterModal(false);
+          setModalWasOpen(true);
         }
-      };
-    
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, [showFilterModal, modalWasOpen]);
+      } else {
+        if (modalWasOpen) {
+          setShowFilterModal(true);
+          setModalWasOpen(false);
+        }
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [showFilterModal, modalWasOpen]);
 
   return (
     <div className="page">
       <Header />
       <main className="main-area">
-        <h1 className="page-title">550 Hotels Available in Melbourne</h1>
-        <div className="main-content">
-          <FilterPanel
-            filters={filters}
-            onNameSearch={handleNameSearch}
-            onRatingChange={handleRatingChange}
-          />
-          <div className="hotel-list">
-            {filteredHotels.map((hotel) => (
-              <HotelCard key={hotel.id} hotel={hotel} />
-            ))}
+        <div className="content-container">
+          <div className="left-content">
+            <h2 className="hotel-count">{filteredHotels.length} Hotels Available in Melbourne</h2>
+            <div className="content-body">
+              <FilterPanel
+                filters={filters}
+                onNameSearch={handleNameSearch}
+                onRatingChange={handleRatingChange}
+              />
+              <HotelCardList hotels={filteredHotels} />
+            </div>
           </div>
           <AdBanner />
         </div>
@@ -110,8 +110,15 @@ function App() {
                 />
               </div>
               <div className="modal-footer">
-                <button className="reset-btn" onClick={handleReset}>Reset</button>
-                <button className="done-btn" onClick={() => setShowFilterModal(false)}>Done</button>
+                <button className="reset-btn" onClick={handleReset}>
+                  Reset
+                </button>
+                <button
+                  className="done-btn"
+                  onClick={() => setShowFilterModal(false)}
+                >
+                  Done
+                </button>
               </div>
             </div>
           </div>
@@ -123,6 +130,16 @@ function App() {
           Filters
         </button>
       </main>
+    </div>
+  );
+}
+
+function HotelCardList({ hotels }) {
+  return (
+    <div className="hotel-list">
+      {hotels.map((hotel) => (
+        <HotelCard key={hotel.id} hotel={hotel} />
+      ))}
     </div>
   );
 }

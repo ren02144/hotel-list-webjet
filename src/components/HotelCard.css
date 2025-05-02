@@ -56,7 +56,6 @@
   white-space: nowrap;
 }
 
-/* ------------ 手机模式 ------------ */
 @media (max-width: 768px) {
   .hotel-card {
     flex-direction: column;
