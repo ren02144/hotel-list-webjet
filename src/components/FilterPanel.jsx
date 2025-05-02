@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./FilterPanel.css";
 
 function FilterPanel({ filters, onNameSearch, onRatingChange }) {
@@ -10,6 +10,10 @@ function FilterPanel({ filters, onNameSearch, onRatingChange }) {
 
   const toggleNameSection = () => setNameSectionOpen(!nameSectionOpen);
   const toggleRatingSection = () => setRatingSectionOpen(!ratingSectionOpen);
+
+  useEffect(() => {
+    setLocalName(filters.name || "");
+  }, [filters.name]);
 
   const handleRatingToggle = (rating) => {
     if (filters.ratings.includes(rating)) {

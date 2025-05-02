@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import HotelCard from "./components/HotelCard";
 import FilterPanel from "./components/FilterPanel";
@@ -38,6 +38,7 @@ function App() {
     ratings: []
   });
   const [showFilterModal, setShowFilterModal] = useState(false);
+  const [modalWasOpen, setModalWasOpen] = useState(false); // State to track if the modal was open during window resize
 
   const handleNameSearch = (name) => {
     setFilters((prev) => ({ ...prev, name }));
@@ -45,6 +46,10 @@ function App() {
 
   const handleRatingChange = (ratings) => {
     setFilters((prev) => ({ ...prev, ratings }));
+  };
+
+  const handleReset = () => {
+    setFilters({ name: "", ratings: [] });
   };
 
   const filteredHotels = hotels
@@ -55,6 +60,25 @@ function App() {
       filters.ratings.length > 0 ? filters.ratings.includes(hotel.rating) : true
     )
     .sort((a, b) => a.price - b.price);
+
+    useEffect(() => {
+      const handleResize = () => {
+        if (window.innerWidth >= 992) {
+          if (showFilterModal) {
+            setShowFilterModal(false);
+            setModalWasOpen(true); 
+          }
+        } else {
+          if (modalWasOpen) {
+            setShowFilterModal(true); 
+            setModalWasOpen(false);   
+          }
+        }
+      };
+    
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, [showFilterModal, modalWasOpen]);
 
   return (
     <div className="page">
@@ -78,17 +102,17 @@ function App() {
         {showFilterModal && (
           <div className="filter-modal">
             <div className="filter-modal-content">
-              <button
-                className="filter-modal-close"
-                onClick={() => setShowFilterModal(false)}
-              >
-                Close
-              </button>
-              <FilterPanel
-                filters={filters}
-                onNameSearch={handleNameSearch}
-                onRatingChange={handleRatingChange}
-              />
+              <div className="modal-body">
+                <FilterPanel
+                  filters={filters}
+                  onNameSearch={handleNameSearch}
+                  onRatingChange={handleRatingChange}
+                />
+              </div>
+              <div className="modal-footer">
+                <button className="reset-btn" onClick={handleReset}>Reset</button>
+                <button className="done-btn" onClick={() => setShowFilterModal(false)}>Done</button>
+              </div>
             </div>
           </div>
         )}
