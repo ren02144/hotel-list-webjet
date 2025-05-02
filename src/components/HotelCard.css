@@ -22,15 +22,14 @@
 
 .hotel-info-wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   flex: 1;
-  padding: 12px 16px;
 }
 
 .hotel-details {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  padding: 12px 16px;
 }
 
 .hotel-name {
@@ -39,14 +38,20 @@
   font-weight: bold;
 }
 
-.hotel-stars {
-  color: #f4a261;
-  margin-bottom: 5px;
-}
-
 .room-type {
   font-size: 14px;
   color: #666;
+}
+
+.price-section {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 8px 12px;
+  margin-left: auto; /* push to right */
 }
 
 .hotel-price {
@@ -54,6 +59,22 @@
   font-weight: bold;
   color: #333;
   white-space: nowrap;
+}
+
+.view-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 14px;
+  cursor: pointer;
+  display: none;
+  height: 100%;
+  border-radius: 0;
+  margin-left: 12px;
+  display: none;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -71,18 +92,30 @@
   }
 
   .hotel-info-wrapper {
-    width: auto;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .price-section {
+    background-color: #f5f5f5;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 12px;
-  }
-
-  .room-type {
-    display: none;
+    min-width: auto;
+    margin-left: auto;
+    padding: 0 0 0 12px;
   }
 
   .hotel-price {
     font-size: 18px;
+  }
+
+  .view-button {
+    display: inline-flex;
+  }
+
+  .room-type {
+    display: none;
   }
 }
