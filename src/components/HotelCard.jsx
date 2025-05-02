@@ -21,7 +21,7 @@ function HotelCard({ hotel }) {
         <div className="hotel-details">
           <h2 className="hotel-name">{hotel.name}</h2>
           <Rating value={hotel.rating} />
-          <div className="room-type">{hotel.roomType}</div>
+          <div className="room-type">Room type: {hotel.roomType}</div>
         </div>
         <div className="price-section">
           <span className="hotel-price">${hotel.price}</span>
