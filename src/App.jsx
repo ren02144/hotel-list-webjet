@@ -10,7 +10,7 @@ const hotels = [
     id: 1,
     name: "Oaks on William",
     price: 282,
-    rating: 5,
+    rating: 4.5,
     roomType: "Studio Apartment (No Housekeeping)",
     image: "https://hotelimages.webjet.com.au/lodging/1000000/850000/845400/845390/e394a620_z.jpg"
   },
@@ -57,7 +57,9 @@ function App() {
       hotel.name.toLowerCase().includes(filters.name.toLowerCase())
     )
     .filter((hotel) =>
-      filters.ratings.length > 0 ? filters.ratings.includes(hotel.rating) : true
+      filters.ratings.length > 0
+        ? filters.ratings.includes(Math.floor(hotel.rating))
+        : true
     )
     .sort((a, b) => a.price - b.price);
 

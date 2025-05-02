@@ -3,13 +3,20 @@
     padding: 16px 0;
   }
   
-  .header-container {
+.header-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-  }
-  
-  .logo {
+}
+
+.logo {
     height: 40px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+      display: block;
+      margin: 0 auto;
+    }
   }
   

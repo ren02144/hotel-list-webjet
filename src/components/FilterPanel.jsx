@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./FilterPanel.css";
+import { FullDiamond } from "./Rating";
 
 function FilterPanel({ filters, onNameSearch, onRatingChange }) {
   const [localName, setLocalName] = useState(filters.name || "");
@@ -78,14 +79,16 @@ function FilterPanel({ filters, onNameSearch, onRatingChange }) {
               />
               All
             </label>
-            {ratings.map((rating) => (
-              <label key={rating}>
+            {ratings.map((star) => (
+              <label key={star} style={{ display: "flex", alignItems: "center", gap: "4px" }}>
                 <input
                   type="checkbox"
-                  checked={filters.ratings.includes(rating)}
-                  onChange={() => handleRatingToggle(rating)}
+                  checked={filters.ratings.includes(star)}
+                  onChange={() => handleRatingToggle(star)}
                 />
-                {"★".repeat(rating)}
+                {[...Array(star)].map((_, i) => (
+                  <FullDiamond key={i} />
+                ))}
               </label>
             ))}
           </div>
